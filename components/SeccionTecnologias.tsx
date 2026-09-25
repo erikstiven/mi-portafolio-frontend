@@ -68,6 +68,7 @@ function TechCard({
             <div className="w-12 h-12 grid place-items-center mb-2 p-2 rounded-lg bg-gray-50 dark:bg-gray-700">
               <img
                 loading="lazy"
+                decoding="async"
                 width={32}
                 height={32}
                 className="w-8 h-8 object-contain"

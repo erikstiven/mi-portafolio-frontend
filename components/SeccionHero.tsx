@@ -134,6 +134,8 @@ export default function SeccionHero() {
             <div className="flex-shrink-0 flex justify-center w-full md:w-auto">
               <div className="relative w-48 h-48 md:w-80 md:h-80 rounded-full border-8 border-white shadow-2xl overflow-hidden bg-white">
                 <img
+                  loading="eager"
+                  decoding="async"
                   src={imgSrc}
                   alt={titulo || 'Foto de perfil'}
                   className="w-full h-full object-cover object-top" // Cambio aquí: agregué object-top

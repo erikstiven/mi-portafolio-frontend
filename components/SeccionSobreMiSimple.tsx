@@ -130,6 +130,8 @@ export default function SeccionSobreMiSimple() {
   <div className="relative w-48 h-48 md:w-64 md:h-64 rounded-full border-4 border-white shadow-xl overflow-hidden">
     {perfil?.fotoSobreMiUrl ? (
       <img
+        loading="lazy"
+        decoding="async"
         src={perfil.fotoSobreMiUrl}
         alt={`${perfil.nombreCompleto || 'Foto de perfil'}`}
         className="w-full h-full object-cover object-top" // Enfoca en la parte superior

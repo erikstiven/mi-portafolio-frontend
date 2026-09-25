@@ -49,6 +49,7 @@ export default function ProjectCard({
         {img ? (
           <img
             loading="lazy"
+            decoding="async"
             src={img}
             alt={titulo}
             className="rounded-xl w-[90%] h-36 object-cover mx-auto mt-4 shadow-md group-hover:scale-105 transition"
