@@ -93,7 +93,11 @@ export default function FormProyecto({ initialData, onSuccess }: Props) {
         if (portada) {
           await updateProyectoForm(initialData.id, data, portada);
         } else {
-          await updateProyectoJson(initialData.id, data);
+          const payload = {
+            ...data,
+            remove_imagen: !preview && !portada && Boolean(initialData?.imagenUrl),
+          };
+          await updateProyectoJson(initialData.id, payload as any);
         }
         toast.success('Proyecto actualizado correctamente');
       } else {

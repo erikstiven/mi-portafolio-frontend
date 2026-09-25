@@ -8,9 +8,12 @@ const nextConfig = {
   typescript: {
     ignoreBuildErrors: true,
   },
-  // ✅ Si usas imágenes de Cloudinary con next/image
   images: {
-    remotePatterns: [{ protocol: 'https', hostname: 'res.cloudinary.com' }],
+    remotePatterns: [
+      { protocol: 'https', hostname: 'res.cloudinary.com' },
+      { protocol: 'https', hostname: 'portafolio.codecima.com' },
+      { protocol: 'https', hostname: 'codecima.com' },
+    ],
   },
 };
 

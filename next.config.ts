@@ -8,6 +8,16 @@ const nextConfig: NextConfig = {
         hostname: 'res.cloudinary.com',
         pathname: '**',
       },
+      {
+        protocol: 'https',
+        hostname: 'portafolio.codecima.com',
+        pathname: '**',
+      },
+      {
+        protocol: 'https',
+        hostname: 'codecima.com',
+        pathname: '**',
+      },
     ],
     formats: ["image/avif", "image/webp"],
   },
