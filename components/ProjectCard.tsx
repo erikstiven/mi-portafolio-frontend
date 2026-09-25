@@ -134,7 +134,7 @@ export default function ProjectCard({
               rel="noopener noreferrer"
               className="flex-1 inline-flex items-center justify-center gap-2 bg-gradient-to-r from-purple-500 to-pink-500 text-white py-2 rounded-lg font-medium shadow-md hover:scale-105 transition"
             >
-              <FaExternalLinkAlt className="text-sm" /> Ver Demo
+              <FaExternalLinkAlt className="text-sm" /> Ver
             </a>
           )}
         </div>
