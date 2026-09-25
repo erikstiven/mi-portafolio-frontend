@@ -25,12 +25,30 @@ async function uploadToCloudinary(file: File): Promise<string> {
   return data.secure_url as string;
 }
 
+function toApiPayload(data: ProyectoSchema) {
+  return {
+    titulo: data.titulo,
+    descripcion: data.descripcion,
+    tecnologias: data.tecnologias,
+    categoria_id: data.categoriaId,
+    categoriaId: data.categoriaId,
+    destacado: data.destacado,
+    nivel: data.nivel,
+    imagen_url: data.imagenUrl,
+    imagenUrl: data.imagenUrl,
+    demo_url: data.demoUrl,
+    demoUrl: data.demoUrl,
+    github_url: data.githubUrl,
+    githubUrl: data.githubUrl,
+  };
+}
+
 /**
  * Crear proyecto enviando archivo a Cloudinary
  */
 export async function createProyectoForm(data: ProyectoSchema, file: File): Promise<Proyecto> {
   const imageUrl = await uploadToCloudinary(file);
-  const payload: ProyectoSchema = { ...data, imagenUrl: imageUrl };
+  const payload = toApiPayload({ ...data, imagenUrl: imageUrl });
   const { data: res } = await api.post<Proyecto>('/proyectos', payload);
   return res;
 }
@@ -39,7 +57,8 @@ export async function createProyectoForm(data: ProyectoSchema, file: File): Prom
  * Crear proyecto solo con datos JSON
  */
 export async function createProyectoJson(data: ProyectoSchema): Promise<Proyecto> {
-  const { data: res } = await api.post<Proyecto>('/proyectos', data);
+  const payload = toApiPayload(data);
+  const { data: res } = await api.post<Proyecto>('/proyectos', payload);
   return res;
 }
 
@@ -48,7 +67,7 @@ export async function createProyectoJson(data: ProyectoSchema): Promise<Proyecto
  */
 export async function updateProyectoForm(id: number, data: ProyectoSchema, file: File): Promise<Proyecto> {
   const imageUrl = await uploadToCloudinary(file);
-  const payload: ProyectoSchema = { ...data, imagenUrl: imageUrl };
+  const payload = toApiPayload({ ...data, imagenUrl: imageUrl });
   const { data: res } = await api.put<Proyecto>(`/proyectos/${id}`, payload);
   return res;
 }
@@ -57,7 +76,8 @@ export async function updateProyectoForm(id: number, data: ProyectoSchema, file:
  * Actualizar proyecto solo con datos JSON
  */
 export async function updateProyectoJson(id: number, data: ProyectoSchema): Promise<Proyecto> {
-  const { data: res } = await api.put<Proyecto>(`/proyectos/${id}`, data);
+  const payload = toApiPayload(data);
+  const { data: res } = await api.put<Proyecto>(`/proyectos/${id}`, payload);
   return res;
 }
 

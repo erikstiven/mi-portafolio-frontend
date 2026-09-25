@@ -210,22 +210,33 @@ export default function FormProyecto({ initialData, onSuccess }: Props) {
       <div>
         <label className="block text-sm font-medium text-gray-700 mb-1">Imagen</label>
         {preview ? (
-          <div className="relative w-32 h-32">
-            <Image
-              src={preview}
-              alt="Vista previa"
-              fill
-              sizes="(max-width: 768px) 100vw, 128px"
-              className="object-cover rounded"
-            />
+          <div className="flex items-center gap-3">
+            <div className="relative w-32 h-32 border rounded overflow-hidden shadow-sm">
+              <Image
+                src={preview}
+                alt="Vista previa"
+                fill
+                sizes="(max-width: 768px) 100vw, 128px"
+                className="object-cover rounded"
+              />
+              <Button
+                type="button"
+                onClick={removeImage}
+                variant="destructive"
+                size="sm"
+                className="absolute top-1 right-1 h-6 w-6 p-0 flex items-center justify-center rounded-full"
+                title="Eliminar imagen"
+              >
+                X
+              </Button>
+            </div>
             <Button
               type="button"
-              onClick={removeImage}
-              variant="destructive"
+              variant="outline"
               size="sm"
-              className="absolute top-1 right-1"
+              onClick={() => fileInputRef.current?.click()}
             >
-              X
+              Cambiar imagen
             </Button>
           </div>
         ) : (

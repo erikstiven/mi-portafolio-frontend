@@ -23,8 +23,11 @@ const isFormData = (data: any) => {
 };
 
 api.interceptors.request.use((config) => {
-  // 1) Token solo en cliente
-  const token = typeof window !== 'undefined' ? useAuthStore.getState().token : null;
+  // 1) Token solo en cliente (Zustand o fallback localStorage)
+  const token =
+    typeof window !== 'undefined'
+      ? useAuthStore.getState().token || localStorage.getItem('token')
+      : null;
 
   // Asegura objeto de headers
   if (!config.headers) config.headers = {};
@@ -49,5 +52,21 @@ api.interceptors.request.use((config) => {
 
   return config;
 });
+
+api.interceptors.response.use(
+  (response) => response,
+  (error) => {
+    if (error?.response?.status === 401 && typeof window !== 'undefined') {
+      const isLogin = error.config?.url?.includes('/auth/login');
+      if (!isLogin) {
+        useAuthStore.getState().logout();
+        if (!window.location.pathname.includes('/login')) {
+          window.location.href = '/login';
+        }
+      }
+    }
+    return Promise.reject(error);
+  }
+);
 
 export default api;
